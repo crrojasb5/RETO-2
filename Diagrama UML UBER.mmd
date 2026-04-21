@@ -1,0 +1,76 @@
+---
+title: DIAGRAMA UML UBER
+---
+classDiagram
+direction LR
+    class Conductor {
+        +bool Disponible
+        +vehiculo: Vehiculo
+        +aceptar_viaje()
+        +finalizar_viaje()
+    }
+
+    class Vehiculo {
+        +str Placa
+        +str Modelo
+        +str Color
+        +int Capacidad
+        +mostrar_informacion()
+    }
+
+    class Persona {
+        +str Nombre
+        +int Identificacion
+        +str Telefono
+        +mostrar_informacion()
+    }
+
+    class Usuario {
+        +str Ubicacion
+        +solicitar_servicio()
+    }
+
+    class Viaje {
+        +str Origen
+        +str Destino
+        +int Distancia
+        +int Costo
+        +str Estado
+        +calcular_costo()
+        +iniciar_viaje()
+        +terminar_viaje()
+    }
+
+    class Pago {
+        +int Monto
+        +str MetodoPago
+        +procesar_pago()
+    }
+
+    class Calificacion {
+        +int Puntuacion
+        +str Comentario
+        +calificar()
+    }
+     class Carro {
+        +str AireAcondicionado
+		+bool Radio
+		+escuchar_musica()
+		+concectar_bluetooth()
+		+encender_aire()
+     }
+     class Moto {
+        +int Clinidraje
+        +bool Baul
+        +entregar_casco()
+		+recibir_casco()
+     }
+    Conductor "1" --* "1" Vehiculo : tiene
+    Persona <|-- Conductor
+	Persona <|-- Usuario
+    Usuario "1" --> "1..*" Viaje : solicita
+    Conductor --> Viaje : realiza
+    Viaje "1" --> "1" Pago : genera
+    Viaje "1" --> "0..1" Calificacion : tiene
+     Vehiculo <|-- Carro
+     Vehiculo <|-- Moto
